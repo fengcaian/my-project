@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1px solid grey" cellspacing="0" cellpadding="0" style="width: 200px;">
+  <tr>
+    <td height="30px" style="font-weight: bold">
+      <span style="display: inline;font-weight: normal; float: right">11779<br>132pcs/袋</span>
+      <span style="font-size: 20px;display: inline;">c11229</span>
+    </td>
+  </tr>
+</table>
+<button id="click">点击</button>
+</body>
+<script>
+  document.getElementById("click").onclick=function () {
+    var a = document.createElement("a");
+    a.href="www.baidu.com";
+    a.target = "blank";
+    setTimeout((function () {
+      a.click();
+    }), 1000)
+  }
+</script>
+</html>
