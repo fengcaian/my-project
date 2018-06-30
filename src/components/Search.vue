@@ -168,7 +168,13 @@ export default {
       this.helloWorldDialog = false
     },
     routerTest () {
-      this.$router.replace('/test-url?address=shanghai&name=1R1%1PPM&age=20')
+      this.$router.replace({
+        name: 'testUrl',
+        query: {
+          address: 'qwer',
+          data: '1R1%PPM'
+        }
+      })
     }
   }
 }

@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import Search from '@/components/Search'
-import Search2 from '@/components/Search2'
 import SvgCharts from '@/components/SvgCharts'
 import Dialog from '@/components/Dialog'
 import Table from '@/components/table'
@@ -18,13 +16,13 @@ export default new Router({
       children: [{
         path: 'element-search2',
         name: 'search2',
-        component: Search2
+        component: resolve => require(['@/components/Search2'], resolve)
       }]
     },
     {
       path: '/element-search',
       name: 'search',
-      component: Search
+      component: resolve => require(['@/components/Search'], resolve)
     },
     {
       path: '/svg-charts',
@@ -39,7 +37,7 @@ export default new Router({
     {
       path: '/table',
       name: 'table',
-      component: Table,
+      component: Table
     }
   ]
 })
