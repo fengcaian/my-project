@@ -168,7 +168,7 @@ export default {
       this.helloWorldDialog = false
     },
     routerTest () {
-      this.$router.replace('/test-url?name=1R1%PPM')
+      this.$router.replace('/test-url?address=shanghai&name=1R1%1PPM&age=20')
     }
   }
 }
