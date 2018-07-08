@@ -38,6 +38,11 @@ export default new Router({
       path: '/table',
       name: 'table',
       component: Table
+    },
+    {
+      path: '/test-axios',
+      name: 'test-axios',
+      component: resolve => require(['@/components/test-axios-timeout'], resolve)
     }
   ]
 })
