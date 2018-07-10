@@ -7,4 +7,15 @@
 <body>
 
 </body>
+<script>
+  var timer = 20;
+  var t = null;
+  if (timer >= 20) {
+    t = setTimeout((function () {
+      console.log('a' + timer++);
+    }), 2000)
+  }
+  clearTimeout(t);
+  console.log('b' + timer++);
+</script>
 </html>

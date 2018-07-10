@@ -11,7 +11,7 @@ export default new Router({
   routes: [
     {
       path: '/home',
-      name: 'HelloWorld',
+      name: 'home',
       component: HelloWorld,
       children: [{
         path: 'element-search2',
@@ -38,6 +38,11 @@ export default new Router({
       path: '/table',
       name: 'table',
       component: Table
+    },
+    {
+      path: '/hello_world',
+      name: 'hello_world',
+      component: HelloWorld
     }
   ]
 })
