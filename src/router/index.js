@@ -43,6 +43,11 @@ export default new Router({
       path: '/hello_world',
       name: 'hello_world',
       component: HelloWorld
+    },
+    {
+      path: '/test-axios',
+      name: 'test-axios',
+      component: resolve => require(['@/components/test-axios-timeout'], resolve)
     }
   ]
 })
