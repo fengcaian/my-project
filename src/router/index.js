@@ -10,9 +10,9 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/home',
+      path: '/',
       name: 'home',
-      component: HelloWorld,
+      component: resolve => require(['@/view/home'], resolve),
       children: [{
         path: 'element-search2',
         name: 'search2',
