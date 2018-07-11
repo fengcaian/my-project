@@ -17,7 +17,8 @@ export default {
     return {
       tabData: [
         {
-          label: '我的行程'
+          label: '我的行程',
+          route: ''
         },
         {
           label: '消息中心'
@@ -33,6 +34,7 @@ export default {
   },
   created () {
     this.$store.dispatch('getConst')
+    console.log(this.$store.state)
   },
   methods: {
     tabChange () {}
