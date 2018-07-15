@@ -53,6 +53,9 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        exclude: [
+          path.resolve(__dirname, '../src/assets'),
+        ],
         loader: 'url-loader',
         options: {
           limit: 10000,
@@ -73,6 +76,16 @@ module.exports = {
         options: {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+        }
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-sprite-loader',
+        include: [
+          path.resolve(__dirname, '../src/assets'),
+        ],
+        options: {
+          symbolId: 'icon-[name]'
         }
       }
     ]

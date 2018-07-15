@@ -8,8 +8,12 @@ import router from './router'
 import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import SvgIcon from '../src/components/Svg-Icon'
+import './common/icons'
+
 Vue.use(VueAxios, axios)
 Vue.use(ElementUI)
+Vue.component('svg-icon', SvgIcon)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
