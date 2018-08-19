@@ -10,7 +10,8 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import SvgIcon from '../src/components/Svg-Icon'
 import './common/icons'
-
+axios.defaults.baseURL = 'http://localhost:8080/SpringMVC'
+Vue.prototype.axios = axios
 Vue.use(VueAxios, axios)
 Vue.use(ElementUI)
 Vue.component('svg-icon', SvgIcon)
