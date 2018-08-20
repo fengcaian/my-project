@@ -1,5 +1,6 @@
 <template>
   <div style="max-width: 1435px; overflow: auto">
+    <el-button type="primary" icon="el-icon-setting" size="mini" @click="showConfig">表格列</el-button>
     <el-table :data="tableData6" :span-method="arraySpanMethod" border style="width: 100%">
       <el-table-column prop="id" label="ID" width="180"></el-table-column>
       <el-table-column prop="name" label="姓名"></el-table-column>
@@ -102,7 +103,8 @@ export default {
           }
         }
       }
-    }
+    },
+    showConfig () {}
   }
 }
 </script>
