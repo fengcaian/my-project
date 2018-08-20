@@ -41,6 +41,14 @@ export default {
         {
           id: 2,
           province: '北京'
+        },
+        {
+          id: 3,
+          province: '上海'
+        },
+        {
+          id: 4,
+          province: '苏州'
         }
       ],
       isShowtitleListLocal: false
