@@ -8,6 +8,7 @@
     <svg-icon icon-class="lock" style="font-size: 100px"></svg-icon>
     <svg-icon icon-class="quickResponse" style="font-size: 100px"></svg-icon>
     <svg-icon icon-class="check" style="font-size: 100px"></svg-icon>
+    <svg-icon icon-class="setting" style="font-size: 50px"></svg-icon>
   </div>
 </template>
 

@@ -9,7 +9,7 @@ import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import SvgIcon from '../src/components/Svg-Icon'
-import './common/icons'
+import './common/icons' // 有了这个就不用再在使用scg-icon的文件中import svg资源了
 
 Vue.use(VueAxios, axios)
 Vue.use(ElementUI)
