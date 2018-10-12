@@ -9,6 +9,8 @@ import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import SvgIcon from '../src/components/Svg-Icon'
+axios.defaults.baseURL = 'http://localhost:8080/SpringMVC'
+Vue.prototype.axios = axios
 import './common/icons' // 有了这个就不用再在使用scg-icon的文件中import svg资源了
 
 Vue.use(VueAxios, axios)

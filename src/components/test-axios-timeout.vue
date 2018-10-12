@@ -1,11 +1,11 @@
 <template>
   <div style="max-width: 1435px; overflow: auto">
-    <el-button type="primary" size="mini" @click="submit">发送请求</el-button>
+    <el-button type="primary" size="mini" @click="sendRequest">发送请求</el-button>
   </div>
 </template>
 
 <script>
-import sendAjax from '@/api'
+// import sendAjax from '@/api'
 export default {
   data () {
     return {
@@ -18,8 +18,8 @@ export default {
     }, 1000)
   },
   methods: {
-    submit () {
-      sendAjax.post('/api/saveFormOk')
+    sendRequest () {
+      this.axios.post('/getData.do')
         .then((res) => {
           console.log(res)
         })
