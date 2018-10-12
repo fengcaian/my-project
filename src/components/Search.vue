@@ -39,8 +39,9 @@
     <a href="tel:13163792392">call</a>
     <el-button type="primary" size="mini" @click="openDialog">打开弹出框</el-button>
     <el-dialog title="弹出框" :visible.sync="helloWorldDialog">
-      <hello-world @callback="DialogCallback"></hello-world>
+      <!--<hello-world ref="childComponent" @callback="DialogCallback" @getChildrenParamsCb="myOwnCallback"></hello-world>-->
     </el-dialog>
+    <hello-world ref="childComponent" @callback="DialogCallback" @getChildrenParamsCb="myOwnCallback"></hello-world>
     <table style="border: 1px solid grey">
       <tr>
         <td style="background-color: red">
@@ -79,6 +80,7 @@
       </tr>
     </table>
     <el-button type="primary" size="mini" @click="routerTest">路由测试</el-button>
+    <el-button type="primary" size="mini" @click="childComponentMethodTest">子组件方法测试</el-button>
   </div>
 </template>
 
@@ -175,6 +177,13 @@ export default {
           data: '1R1%PPM'
         }
       })
+    },
+    childComponentMethodTest () {
+      console.log(1234)
+      this.$refs.childComponent.getParamsFromChild()
+    },
+    myOwnCallback (obj) {
+      console.log(obj)
     }
   }
 }
