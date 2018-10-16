@@ -33,6 +33,37 @@
       <el-table-column prop="amount3" label="数值 3（元）">
       </el-table-column>
     </el-table>
+    <el-button type="primary" size="small" @click="formValid">form表单校验</el-button>
+    <el-row :gutter="20">
+      <el-form ref="form" :model="form">
+        <el-table :data="form.tableData6">
+          <el-table-column prop="id" label="ID" width="180">
+            <template slot-scope="scope">
+              <el-form-item :prop="'tableData6.'+scope.$index+'.id'" :rules="[
+                { required: true, message: '请输入id', trigger: 'blur' }
+              ]">
+                <el-input v-model="scope.row.id"></el-input>
+              </el-form-item>
+            </template>
+          </el-table-column>
+          <el-table-column prop="name" label="姓名">
+            <template slot-scope="scope">
+              <el-form-item :prop="'tableData6.'+scope.$index+'.name'" :rules="[
+                { required: true, message: '请输入姓名', trigger: 'blur' }
+              ]">
+                <el-input v-model="scope.row.name"></el-input>
+              </el-form-item>
+            </template>
+          </el-table-column>
+          <el-table-column prop="amount1" label="数值 1（元）">
+          </el-table-column>
+          <el-table-column prop="amount2" label="数值 2（元）">
+          </el-table-column>
+          <el-table-column prop="amount3" label="数值 3（元）">
+          </el-table-column>
+        </el-table>
+      </el-form>
+    </el-row>
   </div>
 </template>
 
@@ -70,13 +101,17 @@ export default {
         amount1: '539',
         amount2: '4.1',
         amount3: 15
-      }]
+      }],
+      form: {
+        tableData6: []
+      }
     }
   },
   created () {
     setTimeout(() => {
       console.log(this)
     }, 1000)
+    this.form.tableData6 = this.tableData6
   },
   methods: {
     arraySpanMethod ({ row, column, rowIndex, columnIndex }) {
@@ -104,7 +139,12 @@ export default {
         }
       }
     },
-    showConfig () {}
+    showConfig () {},
+    formValid () {
+      this.$refs.form.validate((valid) => {
+        console.log(valid)
+      })
+    }
   }
 }
 </script>
