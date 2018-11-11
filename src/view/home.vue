@@ -37,10 +37,10 @@ export default {
           label: '角色管理',
           route: 'svg-charts'
         },
-        /* {
+        {
           label: '定时任务',
           route: 'timer-task'
-        }, */
+        },
         {
           label: '弹出框popover',
           route: 'popover'
