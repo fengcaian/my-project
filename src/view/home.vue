@@ -1,7 +1,10 @@
 <template>
-  <flex-grow-row>
+  <div>
     <div class="tabs-wrap">
-      <div>
+      <div class="onLeft">
+        <side-bar></side-bar>
+      </div>
+      <div class="onRight">
         <el-tabs type="border-card" @tab-click="tabChange">
           <el-tab-pane v-for="(tab, index) in tabData" :label="tab.label" :name="tab.route" :key="index">
             <router-view></router-view>
@@ -13,14 +16,16 @@
       </div>-->
     </div>
 
-  </flex-grow-row>
+  </div>
 </template>
 
 <script>
 import flexGrowRow from '../components/flex-grow-row'
+import sideBar from '@/components/side-bar'
 export default {
   components: {
-    flexGrowRow
+    flexGrowRow,
+    sideBar
   },
   data () {
     return {
@@ -37,10 +42,10 @@ export default {
           label: '角色管理',
           route: 'svg-charts'
         },
-        {
+        /* {
           label: '定时任务',
           route: 'timer-task'
-        },
+        }, */
         {
           label: '弹出框popover',
           route: 'popover'
@@ -64,8 +69,10 @@ export default {
 
 <style scoped>
 .tabs-wrap {
-  flex: 1;
-  padding: 10px 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding: 0;
   overflow: auto
 }
 .content-wrap {
@@ -73,5 +80,14 @@ export default {
   border: 1px solid #d1dbe5;
   border-top: none;
   padding: 0 20px;
+}
+.onLeft {
+  display: inline-block;
+  text-align: left;
+  margin: 0 5px;
+}
+.onRight {
+  display: inline-block;
+  width: 86%;
 }
 </style>

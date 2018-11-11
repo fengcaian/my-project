@@ -3,8 +3,14 @@ import Router from 'vue-router'
 import Home from '@/view/home'
 import HelloWorld from '@/components/HelloWorld'
 import SvgCharts from '@/components/SvgCharts'
-import Dialog from '@/components/Dialog'
-import Table from '@/components/table'
+// import Dialog from '@/components/Dialog'
+// import Table from '@/components/table'
+const Search2 = r => require.ensure([], () => r(require('@/components/Search2')), 'group-home1')
+const Search = r => require.ensure([], () => r(require('@/components/Search')), 'group-home1')
+const TestAxios = r => require.ensure([], () => r(require('@/components/test-axios-timeout')), 'group-home1')
+const Popover = r => require.ensure([], () => r(require('@/components/popover')), 'group-home1')
+const Table = r => require.ensure([], () => r(require('@/components/table')), 'group-home')
+const Dialog = r => require.ensure([], () => r(require('@/components/Dialog')), 'group-home')
 
 Vue.use(Router)
 
@@ -16,11 +22,11 @@ export default new Router({
       component: Home,
       children: [{
         path: '',
-        component: resolve => require(['@/components/Search2'], resolve)
+        component: Search2 // resolve => require(['@/components/Search2'], resolve)
       }, {
         path: '/element-search',
         name: 'search',
-        component: resolve => require(['@/components/Search'], resolve)
+        component: Search
         /* children: [{
           path: '',
           component: resolve => require(['@/components/Search'], resolve)
@@ -49,12 +55,12 @@ export default new Router({
       {
         path: '/test-axios',
         name: 'test-axios',
-        component: resolve => require(['@/components/test-axios-timeout'], resolve)
+        component: TestAxios // resolve => require(['@/components/test-axios-timeout'], resolve)
       },
       {
         path: '/popover',
         name: 'popover',
-        component: resolve => require(['@/components/popover'], resolve)
+        component: Popover
       }]
     }
   ]
