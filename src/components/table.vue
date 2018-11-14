@@ -80,7 +80,7 @@
         <el-form-item prop="address" label="地址" label-width="80px" :rules="[
                 { required: true, message: '请输入破损数量', trigger: 'blur' },
                 { pattern: /^\d+(.\d+)?$/, message: '只能输入整数或小数', trigger: 'blur' },
-                { validator: validateNumber, message: '只能输入整数或小数', trigger: 'blur' }
+                { validator: validateNumber, trigger: 'blur' }
               ]">
           <el-input style="width: 200px" v-model="form.address"></el-input>
         </el-form-item>
@@ -93,17 +93,17 @@
 
 export default {
   data () {
-    // eslint-disable-next-line
     const validateNumber = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请再次输入密码'))
-      } else if (value !== this.ruleForm2.pass) {
+      } else if (value !== '') {
         callback(new Error('两次输入密码不一致!'))
       } else {
         callback()
       }
     }
     return {
+      validateNumber,
       tableData6: [{
         id: '12987122',
         name: '王小虎',

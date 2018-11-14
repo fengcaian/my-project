@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height: 100%">
     <el-menu
       default-active="2"
       class="el-menu-vertical-demo side_bar_tree"
@@ -135,5 +135,6 @@ export default {
 <style scoped>
   .side_bar_tree {
     width: 200px;
+    height: 100%
   }
 </style>

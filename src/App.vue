@@ -12,9 +12,11 @@ export default {
 
 <style>
 html, body {
+  width:100%;
   height: 100%;
-  overflow-x: hidden;
-  margin: 0;
+  overflow:hidden;
+  margin:0;
+  padding:0;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -22,5 +24,9 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
 }
+  #app > div{
+    height: 100%;
+  }
 </style>

@@ -5,7 +5,7 @@
         <side-bar></side-bar>
       </div>
       <div class="onRight">
-        <el-tabs type="border-card" @tab-click="tabChange">
+        <el-tabs type="card" @tab-click="tabChange" editable @tab-remove="removeTab">
           <el-tab-pane v-for="(tab, index) in tabData" :label="tab.label" :name="tab.route" :key="index">
             <router-view></router-view>
           </el-tab-pane>
@@ -62,13 +62,15 @@ export default {
     tabChange (tab) {
       console.log(tab)
       this.$router.push(tab.name)
-    }
+    },
+    removeTab () {}
   }
 }
 </script>
 
 <style scoped>
 .tabs-wrap {
+  height: 100%;
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
