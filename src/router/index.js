@@ -1,3 +1,4 @@
+// import * as vueEChartsRouter from 'vue-echarts-router'
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/view/home'
@@ -12,6 +13,7 @@ const Popover = r => require.ensure([], () => r(require('@/components/popover'))
 const Table = r => require.ensure([], () => r(require('@/components/table')), 'group-home')
 const Dialog = r => require.ensure([], () => r(require('@/components/Dialog')), 'group-home')
 const VueEChartsTest = r => require.ensure([], () => r(require('@/components/vue-echarts-test')), 'group-home')
+const EChartsBar = r => require.ensure([], () => r(require('@/view/vue-echarts/echarts-bar')), 'vue-echarts')
 
 Vue.use(Router)
 
@@ -24,7 +26,13 @@ export default new Router({
       children: [{
         path: '',
         component: Search2 // resolve => require(['@/components/Search2'], resolve)
-      }, {
+      },
+      {
+        path: '/vue-echart-bar',
+        name: 'vue-echart-bar',
+        component: EChartsBar
+      },
+      {
         path: '/element-search',
         name: 'search',
         component: Search

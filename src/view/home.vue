@@ -2,12 +2,14 @@
   <div>
     <div class="tabs-wrap">
       <div class="onLeft">
-        <side-bar></side-bar>
+        <side-bar @leftMenuRouteChange="leftMenuRouteChange"></side-bar>
       </div>
       <div class="onRight">
-        <el-tabs type="card" @tab-click="tabChange" editable @tab-remove="removeTab">
-          <el-tab-pane v-for="(tab, index) in tabData" :label="tab.label" :name="tab.route" :key="index">
-            <router-view></router-view>
+        <el-tabs type="card" v-model="activeTab" @tab-click="tabChange" editable @tab-remove="removeTab" style="height: 100%">
+          <el-tab-pane v-for="(tab, index) in tabData" :label="tab.label" :name="tab.name" :key="index" style="height: 600px;">
+            <div style="height: 100%">
+              <router-view></router-view>
+            </div>
           </el-tab-pane>
         </el-tabs>
       </div>
@@ -29,26 +31,27 @@ export default {
   },
   data () {
     return {
+      activeTab: '',
       tabData: [
         {
           label: '我的行程',
-          route: '/element-search' // my-journey
+          name: 'element-search'
         },
         {
           label: '消息中心',
-          route: '/table' // message-center
+          name: 'table' // message-center
         },
         {
           label: '角色管理',
-          route: 'svg-charts'
+          name: 'svg-charts'
         },
         {
           label: 'vue-echarts',
-          route: 'vue-echarts-test'
+          name: 'vue-echarts-test'
         },
         {
           label: '弹出框popover',
-          route: 'popover'
+          name: 'popover'
         }
       ]
     }
@@ -63,7 +66,17 @@ export default {
       console.log(tab)
       this.$router.push(tab.name)
     },
-    removeTab () {}
+    removeTab (tagName) {
+      console.log(`remove ${tagName}`)
+    },
+    leftMenuRouteChange (route) {
+      this.tabData.push({
+        label: 'vue-echarts-bar',
+        name: route})
+      this.activeTab = route
+      console.log(this.activeTab)
+      this.$router.replace(route)
+    }
   }
 }
 </script>
@@ -78,7 +91,7 @@ export default {
   overflow: auto
 }
 .content-wrap {
-  height: 90%;
+  height: calc(90% - 10);
   border: 1px solid #d1dbe5;
   border-top: none;
   padding: 0 20px;
@@ -92,4 +105,7 @@ export default {
   display: inline-block;
   width: 86%;
 }
+  .el-tabs__content {
+    height: 100%;
+  }
 </style>

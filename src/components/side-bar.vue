@@ -13,7 +13,7 @@
           <span>{{item.label}}</span>
         </template>
         <el-menu-item-group v-for="(group, ind1) in item.menuGroup" :key="`${index}-${ind1}`">
-          <el-menu-item v-for="(menu, ind2) in group.children" :key="`${index}-${ind1}-${ind2}`" :index="`${index}-${ind1}-${ind2}`">
+          <el-menu-item v-for="(menu, ind2) in group.children" :key="`${index}-${ind1}-${ind2}`" :index="`${index}-${ind1}-${ind2}`" @click="clickMenu(menu.route)">
             {{menu.label}}
           </el-menu-item>
         </el-menu-item-group>
@@ -66,13 +66,14 @@ export default {
       menuData: [
         {
           iconClass: 'el-icon-location',
-          label: '导航一',
+          label: 'vue-echarts',
           disabled: false,
           menuGroup: [
             {
               children: [
                 {
-                  label: '选项1'
+                  label: '柱状图',
+                  route: 'vue-echart-bar'
                 },
                 {
                   label: '选项2'
@@ -92,7 +93,8 @@ export default {
             {
               children: [
                 {
-                  label: '选项1'
+                  label: '选项1',
+                  route: ''
                 },
                 {
                   label: '选项2'
@@ -127,6 +129,10 @@ export default {
     },
     handleClose (key, keyPath) {
       console.log(key, keyPath)
+    },
+    clickMenu (route) {
+      this.$emit('leftMenuRouteChange', route)
+      // this.$router.push(route)
     }
   }
 }
