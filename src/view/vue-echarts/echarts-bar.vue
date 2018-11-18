@@ -32,18 +32,27 @@ export default {
         tooltip: {
           trigger: 'axis'
         },
+        toolbox: {
+          show: true,
+          feature: {
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+          }
+        },
         legend: {
           data: ['政策法规', '经办规程', '业务场景模拟', '常见问题']
         },
         grid: {
           left: '3%',
-          right: '4%',
+          right: '1%',
           bottom: '3%',
           containLabel: true
         },
         // x轴显示
         xAxis: {
-          data: ['公共管理业务', '基金财务业务', '内控监督业务', '养老待遇业务', '医疗待遇业务', '工伤待遇业务', '失业待遇业务', '生育待遇业务'],
+          data: ['2018-4', '2018-5', '2018-6', '2018-7', '2018-8', '2018-9', '2018-10'],
           splitLine: {
             show: false
           }
@@ -80,7 +89,7 @@ export default {
             name: '业务场景模拟',
             type: 'bar',
             stack: '业务',
-            data: [1, 2, 3, 4, 2, 3, 3],
+            data: [1, 2, 3, 4, 2, 5, 3],
             barWidth: 38,
             itemStyle: {
               normal: {color: '#3FBB49'}
@@ -101,10 +110,22 @@ export default {
     }
   },
   mounted () {
+    this.resizeChart()
     const that = this
-    that.$refs.chart.resize({width: this.$refs.chartContainer.offsetWidth})
+    let resizeTag = true
     window.onresize = () => { //  根据窗口大小调整大小
-      that.$refs.chart.resize({width: 200})
+      if (resizeTag) {
+        that.resizeChart()
+        resizeTag = false
+        setTimeout(() => {
+          resizeTag = true
+        }, 100)
+      }
+    }
+  },
+  methods: {
+    resizeChart () {
+      this.$refs.chart.resize({width: this.$refs.chartContainer.offsetWidth}) // this.$refs.chartContainer.offsetWidth
     }
   }
 }

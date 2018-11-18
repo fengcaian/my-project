@@ -4,5 +4,10 @@ export default [
     path: '/vue-echart-bar',
     name: 'vue-echart-bar',
     component: EChartsBar
+  },
+  {
+    path: '/vue-echart-line',
+    name: 'vue-echart-line',
+    component: EChartsBar
   }
 ]

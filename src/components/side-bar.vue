@@ -76,7 +76,8 @@ export default {
                   route: 'vue-echart-bar'
                 },
                 {
-                  label: '选项2'
+                  label: '线型图',
+                  route: 'vue-echart-line'
                 },
                 {
                   label: '选项3'
@@ -132,7 +133,6 @@ export default {
     },
     clickMenu (route) {
       this.$emit('leftMenuRouteChange', route)
-      // this.$router.push(route)
     }
   }
 }

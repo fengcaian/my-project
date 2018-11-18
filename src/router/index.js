@@ -12,8 +12,8 @@ const TestAxios = r => require.ensure([], () => r(require('@/components/test-axi
 const Popover = r => require.ensure([], () => r(require('@/components/popover')), 'group-home1')
 const Table = r => require.ensure([], () => r(require('@/components/table')), 'group-home')
 const Dialog = r => require.ensure([], () => r(require('@/components/Dialog')), 'group-home')
-const VueEChartsTest = r => require.ensure([], () => r(require('@/components/vue-echarts-test')), 'group-home')
 const EChartsBar = r => require.ensure([], () => r(require('@/view/vue-echarts/echarts-bar')), 'vue-echarts')
+const EChartsLine = r => require.ensure([], () => r(require('@/view/vue-echarts/echarts-line')), 'group-home')
 
 Vue.use(Router)
 
@@ -31,6 +31,11 @@ export default new Router({
         path: '/vue-echart-bar',
         name: 'vue-echart-bar',
         component: EChartsBar
+      },
+      {
+        path: '/vue-echart-line',
+        name: 'vue-echart-line',
+        component: EChartsLine
       },
       {
         path: '/element-search',
@@ -70,11 +75,6 @@ export default new Router({
         path: '/popover',
         name: 'popover',
         component: Popover
-      },
-      {
-        path: '/vue-echarts-test',
-        name: 'vue-echarts-test',
-        component: VueEChartsTest
       }]
     }
   ]

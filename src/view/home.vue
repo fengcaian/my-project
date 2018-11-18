@@ -46,10 +46,6 @@ export default {
           name: 'svg-charts'
         },
         {
-          label: 'vue-echarts',
-          name: 'vue-echarts-test'
-        },
-        {
           label: '弹出框popover',
           name: 'popover'
         }
