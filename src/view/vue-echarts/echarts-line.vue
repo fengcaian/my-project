@@ -1,17 +1,17 @@
 <template>
-  <div>
-    <chart :options="options"></chart>
+  <div ref="chartContainer">
+    <chart ref="chart" :options="options"></chart>
   </div>
 </template>
 
 <script>
-import Chart from 'vue-echarts/components/ECharts'
-import 'echarts/lib/chart/bar'
-import 'echarts/lib/chart/line'
-import 'echarts/lib/component/title'
-import 'echarts/lib/component/tooltip'
-import 'echarts/lib/component/toolbox'
-import 'echarts/extension/dataTool' // 线的标示
+import Chart from 'vue-echarts/components/ECharts';
+import 'echarts/lib/chart/bar';
+import 'echarts/lib/chart/line';
+import 'echarts/lib/component/title';
+import 'echarts/lib/component/tooltip';
+import 'echarts/lib/component/toolbox';
+import 'echarts/extension/dataTool'; // 线的标示
 
 export default {
   name: 'app',
@@ -19,7 +19,7 @@ export default {
     Chart
   },
   data () {
-    const colors = ['#5793f3', '#d14a61', '#675bba']
+    const colors = ['#5793f3', '#d14a61', '#675bba'];
     return {
       options: {
         color: colors,
@@ -43,7 +43,9 @@ export default {
         },
         grid: {
           top: 70,
-          bottom: 50
+          right: '1%',
+          bottom: 50,
+          left: '3%'
         },
         xAxis: [
           {
@@ -60,7 +62,7 @@ export default {
             axisPointer: {
               label: {
                 formatter: function (params) {
-                  return `降水量  ${params.value}${params.seriesData.length ? '：' + params.seriesData[0].data : ''}`
+                  return `降水量  ${params.value}${params.seriesData.length ? '：' + params.seriesData[0].data : ''}`;
                 }
               }
             },
@@ -80,7 +82,7 @@ export default {
             axisPointer: {
               label: {
                 formatter: function (params) {
-                  return `降水量  ${params.value}${params.seriesData.length ? '：' + params.seriesData[0].data : ''}`
+                  return `降水量  ${params.value}${params.seriesData.length ? '：' + params.seriesData[0].data : ''}`;
                 }
               }
             }
@@ -108,7 +110,26 @@ export default {
           }
         ]
       }
+    };
+  },
+  mounted () {
+    this.resizeChart();
+    const that = this;
+    let resizeTag = true;
+    window.onresize = () => { //  根据窗口大小调整大小
+      if (resizeTag) {
+        that.resizeChart();
+        resizeTag = false;
+        setTimeout(() => {
+          resizeTag = true;
+        }, 100);
+      }
+    };
+  },
+  methods: {
+    resizeChart () {
+      this.$refs.chart.resize({width: this.$refs.chartContainer.offsetWidth}); // this.$refs.chartContainer.offsetWidth
     }
   }
-}
+};
 </script>

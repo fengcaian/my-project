@@ -5,7 +5,7 @@
         <side-bar @leftMenuRouteChange="leftMenuRouteChange"></side-bar>
       </div>
       <div class="onRight">
-        <el-tabs type="card" v-model="activeTab" @tab-click="tabChange" editable @tab-remove="removeTab" style="height: 100%">
+        <el-tabs type="card" v-model="activeTab" @tab-click="tabChange" closable @tab-remove="removeTab" style="height: 100%">
           <el-tab-pane v-for="(tab, index) in tabData" :label="tab.label" :name="tab.name" :key="index" style="height: 600px;">
             <div style="height: 100%">
               <router-view></router-view>
@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import flexGrowRow from '../components/flex-grow-row'
-import sideBar from '@/components/side-bar'
+import flexGrowRow from '../components/flex-grow-row';
+import sideBar from '@/components/side-bar';
 export default {
   components: {
     flexGrowRow,
@@ -50,31 +50,34 @@ export default {
           name: 'popover'
         }
       ]
-    }
+    };
   },
   created () {
-    this.$store.dispatch('getConst')
-    console.log(this.$store.state)
-    this.$router.push('/element-search')
+    this.$store.dispatch('getConst');
+    console.log(this.$store.state);
+    this.activeTab = 'element-search';
+    // this.$router.push('/element-search');
   },
   methods: {
     tabChange (tab) {
-      console.log(tab)
-      this.$router.push(tab.name)
+      console.log(tab);
+      this.$router.push(tab.name);
     },
     removeTab (tagName) {
-      console.log(`remove ${tagName}`)
+      console.log(`remove ${tagName}`);
     },
     leftMenuRouteChange (route) {
-      this.tabData.push({
-        label: 'vue-echarts-bar',
-        name: route})
-      this.activeTab = route
-      console.log(this.activeTab)
-      this.$router.replace(route)
+      if (this.tabData.findIndex(item => item.name === route) === -1) {
+        this.tabData.push({
+          label: 'vue-echarts-bar',
+          name: route});
+      }
+      this.activeTab = route;
+      console.log(this.activeTab);
+      this.$router.replace(route);
     }
   }
-}
+};
 </script>
 
 <style scoped>

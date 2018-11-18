@@ -23,19 +23,19 @@ export default {
     return {
       outerVisible: false,
       innerVisible: false
-    }
+    };
   },
   mounted () {},
   created () {
     setTimeout(() => {
-      console.log(this)
-    }, 1000)
+      console.log(this);
+    }, 1000);
     setTimeout(function () {
-      console.log(this)
-    }, 2000)
+      console.log(this);
+    }, 2000);
   },
   methods: {}
-}
+};
 </script>
 
 <style scoped>

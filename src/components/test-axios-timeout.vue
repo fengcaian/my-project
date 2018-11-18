@@ -10,22 +10,22 @@ export default {
   data () {
     return {
       responseData: ''
-    }
+    };
   },
   created () {
     setTimeout(() => {
-      console.log(this)
-    }, 1000)
+      console.log(this);
+    }, 1000);
   },
   methods: {
     sendRequest () {
       this.axios.post('/getData.do')
         .then((res) => {
-          console.log(res)
-        })
+          console.log(res);
+        });
     }
   }
-}
+};
 </script>
 
 <style scoped>

@@ -17,30 +17,30 @@ export default {
   data () {
     return {
       name: 1
-    }
+    };
   },
   computed: {
     dataArr () {
-      return [1, 2, 3]
+      return [1, 2, 3];
     }
   },
   mounted () {
-    this.addEvent(document.getElementById('div'), 'click', this.fun)
+    this.addEvent(document.getElementById('div'), 'click', this.fun);
   },
   methods: {
     fun () {
-      alert(this.name)
+      alert(this.name);
     },
     addEvent (obj, name, cb) {
       if (obj.attachEvent) {
-        alert(11)
-        obj.attachEvent(`on${name}`, cb)
+        alert(11);
+        obj.attachEvent(`on${name}`, cb);
       } else {
-        obj.addEventListener(name, cb, false)
+        obj.addEventListener(name, cb, false);
       }
     }
   }
-}
+};
 </script>
 
 <style scoped>

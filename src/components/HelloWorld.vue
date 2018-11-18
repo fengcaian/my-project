@@ -56,15 +56,15 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
-    }
+    };
   },
   methods: {
     getParamsFromChild () {
-      console.log(456)
-      this.$emit('getChildrenParamsCb', {name: '123456'})
+      console.log(456);
+      this.$emit('getChildrenParamsCb', {name: '123456'});
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

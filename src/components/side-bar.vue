@@ -53,8 +53,8 @@
 </template>
 
 <script>
-import ElSubmenu from '../../node_modules/element-ui/packages/menu/src/submenu.vue'
-import ElMenuItemGroup from '../../node_modules/element-ui/packages/menu/src/menu-item-group.vue'
+import ElSubmenu from '../../node_modules/element-ui/packages/menu/src/submenu.vue';
+import ElMenuItemGroup from '../../node_modules/element-ui/packages/menu/src/menu-item-group.vue';
 
 export default {
   components: {
@@ -122,20 +122,20 @@ export default {
           ]
         }
       ]
-    }
+    };
   },
   methods: {
     handleOpen (key, keyPath) {
-      console.log(key, keyPath)
+      console.log(key, keyPath);
     },
     handleClose (key, keyPath) {
-      console.log(key, keyPath)
+      console.log(key, keyPath);
     },
     clickMenu (route) {
-      this.$emit('leftMenuRouteChange', route)
+      this.$emit('leftMenuRouteChange', route);
     }
   }
-}
+};
 </script>
 
 <style scoped>

@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import tabColumnConfig from './table'
+import tabColumnConfig from './table';
 
 export default {
   components: {
@@ -52,40 +52,40 @@ export default {
         }
       ],
       isShowtitleListLocal: false
-    }
+    };
   },
   methods: {},
   directives: {
     hoverHeader: {
       // 配置
       bind () {
-        console.log(1234)
+        console.log(1234);
       },
       inserted () {
-        console.log(56)
+        console.log(56);
       },
       componentUpdated (el, binding, vnode) {
-        const hd = el.getElementsByTagName('thead')[0]
+        const hd = el.getElementsByTagName('thead')[0];
         if (!hd || hd.mouseenterListener) {
-          return
+          return;
         }
         hd.mouseenterListener = () => {
-          vnode.context.isShowtitleListLocal = true
-          if (hd.mouseleaveTimer) clearTimeout(hd.mouseleaveTimer)
-        }
-        hd.addEventListener('mouseenter', hd.mouseenterListener, true)
+          vnode.context.isShowtitleListLocal = true;
+          if (hd.mouseleaveTimer) clearTimeout(hd.mouseleaveTimer);
+        };
+        hd.addEventListener('mouseenter', hd.mouseenterListener, true);
         hd.mouseleaveListener = () => {
-          if (hd.mouseleaveTimer) clearTimeout(hd.mouseleaveTimer)
+          if (hd.mouseleaveTimer) clearTimeout(hd.mouseleaveTimer);
           hd.mouseleaveTimer = setTimeout(() => {
-            vnode.context.isShowtitleListLocal = false
-            hd.mouseleaveTimer = null
-          }, 1000)
-        }
-        hd.addEventListener('mouseleave', hd.mouseleaveListener, true)
+            vnode.context.isShowtitleListLocal = false;
+            hd.mouseleaveTimer = null;
+          }, 1000);
+        };
+        hd.addEventListener('mouseleave', hd.mouseleaveListener, true);
       }
     }
   }
-}
+};
 </script>
 
 <style scoped>

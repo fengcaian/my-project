@@ -95,13 +95,13 @@ export default {
   data () {
     const validateNumber = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请再次输入密码'))
+        callback(new Error('请再次输入密码'));
       } else if (value !== '') {
-        callback(new Error('两次输入密码不一致!'))
+        callback(new Error('两次输入密码不一致!'));
       } else {
-        callback()
+        callback();
       }
-    }
+    };
     return {
       validateNumber,
       tableData6: [{
@@ -160,21 +160,21 @@ export default {
         value: 5,
         label: '仓库E'
       }]
-    }
+    };
   },
   created () {
     setTimeout(() => {
-      console.log(this)
-    }, 1000)
-    this.form.tableData6 = this.tableData6
+      console.log(this);
+    }, 1000);
+    this.form.tableData6 = this.tableData6;
   },
   methods: {
     arraySpanMethod ({ row, column, rowIndex, columnIndex }) {
       if (rowIndex % 2 === 0) {
         if (columnIndex === 0) {
-          return [1, 2]
+          return [1, 2];
         } else if (columnIndex === 1) {
-          return [0, 0]
+          return [0, 0];
         }
       }
     },
@@ -185,23 +185,23 @@ export default {
           return {
             rowspan: 2,
             colspan: 1
-          }
+          };
         } else {
           return {
             rowspan: 0,
             colspan: 0
-          }
+          };
         }
       }
     },
     showConfig () {},
     formValid () {
       this.$refs.form.validate((valid) => {
-        console.log(valid)
-      })
+        console.log(valid);
+      });
     }
   }
-}
+};
 </script>
 
 <style scoped>

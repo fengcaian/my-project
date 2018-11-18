@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import moment from 'moment'
+import moment from 'moment';
 export default {
   data () {
     return {
@@ -70,33 +70,33 @@ export default {
         'Utah', 'Vermont', 'Virginia',
         'Washington', 'West Virginia', 'Wisconsin',
         'Wyoming']
-    }
+    };
   },
   mounted () {
     this.list = this.states.map(item => {
-      return { value: item, label: item }
-    })
-    console.log(this.$route.matched)
-    console.log(moment().format('YYYY-MM-DD HH:mm:ss'))
-    console.log(moment().format('ll'))
+      return { value: item, label: item };
+    });
+    console.log(this.$route.matched);
+    console.log(moment().format('YYYY-MM-DD HH:mm:ss'));
+    console.log(moment().format('ll'));
   },
   methods: {
     remoteMethod (query) {
       if (query !== '') {
-        this.loading = true
+        this.loading = true;
         setTimeout(() => {
-          this.loading = false
+          this.loading = false;
           this.options4 = this.list.filter(item => {
             return item.label.toLowerCase()
-              .indexOf(query.toLowerCase()) > -1
-          })
-        }, 200)
+              .indexOf(query.toLowerCase()) > -1;
+          });
+        }, 200);
       } else {
-        this.options4 = []
+        this.options4 = [];
       }
     }
   }
-}
+};
 </script>
 
 <style scoped>

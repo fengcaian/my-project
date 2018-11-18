@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import Chart from 'vue-echarts/components/ECharts'
-import 'echarts/lib/chart/bar'
-import 'echarts/lib/chart/line'
-import 'echarts/lib/component/title'
-import 'echarts/lib/component/tooltip'
-import 'echarts/lib/component/toolbox'
-import 'echarts/extension/dataTool' // 线的标示
+import Chart from 'vue-echarts/components/ECharts';
+import 'echarts/lib/chart/bar';
+import 'echarts/lib/chart/line';
+import 'echarts/lib/component/title';
+import 'echarts/lib/component/tooltip';
+import 'echarts/lib/component/toolbox';
+import 'echarts/extension/dataTool'; // 线的标示
 
 export default {
   name: 'app',
@@ -107,28 +107,28 @@ export default {
           }
         ]
       }
-    }
+    };
   },
   mounted () {
-    this.resizeChart()
-    const that = this
-    let resizeTag = true
+    this.resizeChart();
+    const that = this;
+    let resizeTag = true;
     window.onresize = () => { //  根据窗口大小调整大小
       if (resizeTag) {
-        that.resizeChart()
-        resizeTag = false
+        that.resizeChart();
+        resizeTag = false;
         setTimeout(() => {
-          resizeTag = true
-        }, 100)
+          resizeTag = true;
+        }, 100);
       }
-    }
+    };
   },
   methods: {
     resizeChart () {
-      this.$refs.chart.resize({width: this.$refs.chartContainer.offsetWidth}) // this.$refs.chartContainer.offsetWidth
+      this.$refs.chart.resize({width: this.$refs.chartContainer.offsetWidth}); // this.$refs.chartContainer.offsetWidth
     }
   }
-}
+};
 </script>
 <style scoped>
   /*.echarts {

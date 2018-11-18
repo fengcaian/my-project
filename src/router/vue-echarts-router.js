@@ -1,4 +1,4 @@
-const EChartsBar = r => require.ensure([], () => r(require('@/views/vue-echarts/echarts-bar')), 'vue-echarts')
+const EChartsBar = r => require.ensure([], () => r(require('@/views/vue-echarts/echarts-bar')), 'vue-echarts');
 export default [
   {
     path: '/vue-echart-bar',
@@ -10,4 +10,4 @@ export default [
     name: 'vue-echart-line',
     component: EChartsBar
   }
-]
+];

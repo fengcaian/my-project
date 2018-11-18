@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import HelloWorld from './HelloWorld'
+import HelloWorld from './HelloWorld';
 
 export default {
   components: {
@@ -135,39 +135,39 @@ export default {
       }],
       value5: [],
       helloWorldDialog: false
-    }
+    };
   },
   mounted () {
     this.list = this.states.map(item => {
-      return { value: item, label: item }
-    })
+      return { value: item, label: item };
+    });
   },
   methods: {
     remoteMethod (query) {
       if (query !== '') {
-        this.loading = true
+        this.loading = true;
         setTimeout(() => {
-          this.loading = false
+          this.loading = false;
           this.options4 = this.list.filter(item => {
             return item.label.toLowerCase()
-              .indexOf(query.toLowerCase()) > -1
-          })
-        }, 200)
+              .indexOf(query.toLowerCase()) > -1;
+          });
+        }, 200);
       } else {
-        this.options4 = []
+        this.options4 = [];
       }
     },
     clickToConfirm () {
-      console.log(this.value5)
+      console.log(this.value5);
     },
     phone (telNumber) {
-      window.location.href = `tel://${telNumber}`
+      window.location.href = `tel://${telNumber}`;
     },
     openDialog () {
-      this.helloWorldDialog = true
+      this.helloWorldDialog = true;
     },
     DialogCallback () {
-      this.helloWorldDialog = false
+      this.helloWorldDialog = false;
     },
     routerTest () {
       this.$router.replace({
@@ -176,17 +176,17 @@ export default {
           address: 'qwer',
           data: '1R1%PPM'
         }
-      })
+      });
     },
     childComponentMethodTest () {
-      console.log(1234)
-      this.$refs.childComponent.getParamsFromChild()
+      console.log(1234);
+      this.$refs.childComponent.getParamsFromChild();
     },
     myOwnCallback (obj) {
-      console.log(obj)
+      console.log(obj);
     }
   }
-}
+};
 </script>
 
 <style scoped>
