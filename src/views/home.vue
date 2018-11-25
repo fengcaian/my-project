@@ -5,13 +5,16 @@
         <side-bar @leftMenuRouteChange="leftMenuRouteChange"></side-bar>
       </div>
       <div class="onRight">
-        <el-tabs type="card" v-model="activeTab" @tab-click="tabChange" closable @tab-remove="removeTab" style="height: 100%">
-          <el-tab-pane v-for="(tab, index) in tabData" :label="tab.label" :name="tab.name" :key="index" style="height: 600px;">
+        <el-tabs  v-if="tabData.length" type="card" v-model="activeTab" @tab-click="tabChange" closable @tab-remove="removeTab">
+          <el-tab-pane v-for="(tab, index) in tabData" :label="tab.label" :name="tab.name" :key="index">
             <div style="height: 100%">
               <router-view></router-view>
             </div>
           </el-tab-pane>
         </el-tabs>
+        <div v-if="!tabData.length">
+          <h3>欢迎来到我的vue空间</h3>
+        </div>
       </div>
       <!--<div class="content-wrap">
         &lt;!&ndash;<router-view></router-view>&ndash;&gt;
@@ -65,6 +68,12 @@ export default {
     },
     removeTab (tagName) {
       console.log(`remove ${tagName}`);
+      const currentTabIndex = this.tabData.findIndex(item => item.name === tagName);
+      this.tabData.splice(currentTabIndex, 1);
+      const tab = this.tabData[currentTabIndex] || this.tabData[currentTabIndex - 1];
+      const tabName = (tab && tab.name) || '';
+      this.activeTab = tabName;
+      this.$router.replace('');
     },
     leftMenuRouteChange (route) {
       if (this.tabData.findIndex(item => item.name === route) === -1) {

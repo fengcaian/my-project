@@ -22,7 +22,7 @@ export default {
     return {};
   },
   computed: {
-    options () {
+    options () { // 异步获取数据更新options
       return {
         title: {
           text: '知识分类统计',

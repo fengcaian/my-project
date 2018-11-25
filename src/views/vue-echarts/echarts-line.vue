@@ -25,7 +25,7 @@ export default {
     };
   },
   computed: {
-    options () {
+    options () { // 异步获取数据更新options
       return {
         color: this.colors,
         tooltip: {
