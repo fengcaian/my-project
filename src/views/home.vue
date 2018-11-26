@@ -2,7 +2,7 @@
   <div>
     <div class="tabs-wrap">
       <div class="onLeft">
-        <side-bar @leftMenuRouteChange="leftMenuRouteChange"></side-bar>
+        <side-bar ref="sideBar" @leftMenuRouteChange="leftMenuRouteChange"></side-bar>
       </div>
       <div class="onRight">
         <el-tabs  v-if="tabData.length" type="card" v-model="activeTab" @tab-click="tabChange" closable @tab-remove="removeTab">
@@ -45,10 +45,6 @@ export default {
           name: 'table' // message-center
         },
         {
-          label: '角色管理',
-          name: 'svg-charts'
-        },
-        {
           label: '弹出框popover',
           name: 'popover'
         }
@@ -63,27 +59,25 @@ export default {
   },
   methods: {
     tabChange (tab) {
-      console.log(tab);
       this.$router.push(tab.name);
+      this.$refs.sideBar.locateLeftMenu();
     },
     removeTab (tagName) {
-      console.log(`remove ${tagName}`);
       const currentTabIndex = this.tabData.findIndex(item => item.name === tagName);
       this.tabData.splice(currentTabIndex, 1);
       const tab = this.tabData[currentTabIndex] || this.tabData[currentTabIndex - 1];
       const tabName = (tab && tab.name) || '';
       this.activeTab = tabName;
-      this.$router.replace('');
+      this.$router.replace(tabName);
     },
-    leftMenuRouteChange (route) {
-      if (this.tabData.findIndex(item => item.name === route) === -1) {
+    leftMenuRouteChange (menu) {
+      if (this.tabData.findIndex(item => item.name === menu.route) === -1) {
         this.tabData.push({
-          label: 'vue-echarts-bar',
-          name: route});
+          label: menu.label,
+          name: menu.route});
       }
-      this.activeTab = route;
-      console.log(this.activeTab);
-      this.$router.replace(route);
+      this.activeTab = menu.route;
+      this.$router.replace(menu.route);
     }
   }
 };

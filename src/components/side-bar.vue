@@ -1,7 +1,6 @@
 <template>
   <div style="height: 100%">
     <el-menu
-      default-active="2"
       class="el-menu-vertical-demo side_bar_tree"
       :default-active="activeMenuIndex"
       @open="handleOpen"
@@ -14,8 +13,8 @@
           <span>{{item.label}}</span>
         </template>
         <el-menu-item-group v-for="(group, ind1) in item.menuGroup" :key="`${index}-${ind1}`">
-          <el-menu-item v-for="(menu, ind2) in group.children" :key="`${index}-${ind1}-${ind2}`" :index="`${index}-${ind1}-${ind2}`" @click="clickMenu(menu.route)">
-            {{menu.label}}{{`${index}-${ind1}-${ind2}`}}
+          <el-menu-item v-for="(menu, ind2) in group.children" :key="`${index}-${ind1}-${ind2}`" :index="`${index}-${ind1}-${ind2}`" @click="clickMenu(menu)">
+            {{menu.label}}
           </el-menu-item>
         </el-menu-item-group>
       </el-submenu>
@@ -90,17 +89,14 @@ export default {
         },
         {
           iconClass: 'el-icon-menu',
-          label: '导航二',
+          label: 'SVG',
           disabled: false,
           menuGroup: [
             {
               children: [
                 {
-                  label: '选项1',
-                  route: ''
-                },
-                {
-                  label: '选项2'
+                  label: 'svg图标',
+                  route: 'svg-charts'
                 }
               ]
             }
@@ -128,17 +124,7 @@ export default {
   },
   created () {
     this.activeMenuIndex = '';
-    this.menuData.forEach((item1, index1) => {
-      item1.menuGroup.forEach((item2, index2) => {
-        const index3 = item2.children.findIndex(item3 => item3.route === this.$route.name);
-        if (index3 !== -1) {
-          this.activeMenuIndex = `${index1}-${index2}-${index3}`;
-        } else {
-          this.activeMenuIndex = '';
-        }
-        console.log(`${index1}-${index2}-${index3}`);
-      });
-    });
+    this.locateLeftMenu();
   },
   methods: {
     handleOpen (key, keyPath) {
@@ -147,8 +133,18 @@ export default {
     handleClose (key, keyPath) {
       console.log(key, keyPath);
     },
-    clickMenu (route) {
-      this.$emit('leftMenuRouteChange', route);
+    clickMenu (menu) {
+      this.$emit('leftMenuRouteChange', menu);
+    },
+    locateLeftMenu () {
+      this.menuData.forEach((item1, index1) => {
+        item1.menuGroup.forEach((item2, index2) => {
+          const index3 = item2.children.findIndex(item3 => item3.route === this.$route.name);
+          if (index3 !== -1) {
+            this.activeMenuIndex = `${index1}-${index2}-${index3}`;
+          }
+        });
+      });
     }
   }
 };

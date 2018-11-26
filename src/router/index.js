@@ -1,9 +1,9 @@
 import { vueEChartsRouter } from './vue-echarts-router';
+import { svgRouter } from './svg-router';
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/views/home';
 import HelloWorld from '@/components/HelloWorld';
-import SvgCharts from '@/components/SvgCharts';
 // import Dialog from '@/components/Dialog'
 // import Table from '@/components/table'
 // const Search2 = r => require.ensure([], () => r(require('@/components/Search2')), 'group-home1');
@@ -35,11 +35,7 @@ export default new Router({
           component: resolve => require(['@/components/Search'], resolve)
         }] */
         },
-        {
-          path: '/svg-charts',
-          name: 'svg-charts',
-          component: SvgCharts
-        },
+        ...svgRouter,
         {
           path: '/dialog',
           name: 'dialog',
