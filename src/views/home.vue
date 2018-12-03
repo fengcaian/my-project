@@ -35,20 +35,7 @@ export default {
   data () {
     return {
       activeTab: '',
-      tabData: [
-        {
-          label: '我的行程',
-          name: 'element-search'
-        },
-        {
-          label: '消息中心',
-          name: 'table' // message-center
-        },
-        {
-          label: '弹出框popover',
-          name: 'popover'
-        }
-      ]
+      tabData: []
     };
   },
   created () {

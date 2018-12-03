@@ -104,16 +104,22 @@ export default {
         },
         {
           iconClass: 'el-icon-document',
-          label: '导航三',
+          label: 'element',
           disabled: false,
           menuGroup: [
             {
               children: [
                 {
-                  label: '选项1'
+                  label: '表格',
+                  route: 'table'
                 },
                 {
-                  label: '选项2'
+                  label: 'popover',
+                  route: 'popover'
+                },
+                {
+                  label: 'dialog',
+                  route: 'dialog'
                 }
               ]
             }

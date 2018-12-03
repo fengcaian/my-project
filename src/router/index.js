@@ -1,5 +1,6 @@
 import { vueEChartsRouter } from './vue-echarts-router';
 import { svgRouter } from './svg-router';
+import { elementRouter } from './element-router';
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/views/home';
@@ -9,9 +10,6 @@ import HelloWorld from '@/components/HelloWorld';
 // const Search2 = r => require.ensure([], () => r(require('@/components/Search2')), 'group-home1');
 const Search = r => require.ensure([], () => r(require('@/components/Search')), 'group-home1');
 const TestAxios = r => require.ensure([], () => r(require('@/components/test-axios-timeout')), 'group-home1');
-const Popover = r => require.ensure([], () => r(require('@/components/popover')), 'group-home1');
-const Table = r => require.ensure([], () => r(require('@/components/table')), 'group-home');
-const Dialog = r => require.ensure([], () => r(require('@/components/Dialog')), 'group-home');
 
 Vue.use(Router);
 export default new Router({
@@ -19,13 +17,14 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      redirect: '/element-search',
+      // redirect: '/element-search',
       component: Home,
       children: [/* {
         path: '',
         component: Search2 // resolve => require(['@/components/Search2'], resolve)
       }, */
         ...vueEChartsRouter,
+        ...elementRouter,
         {
           path: '/element-search',
           name: 'search',
@@ -37,16 +36,6 @@ export default new Router({
         },
         ...svgRouter,
         {
-          path: '/dialog',
-          name: 'dialog',
-          component: Dialog
-        },
-        {
-          path: '/table',
-          name: 'table',
-          component: Table
-        },
-        {
           path: '/hello_world',
           name: 'hello_world',
           component: HelloWorld
@@ -55,11 +44,6 @@ export default new Router({
           path: '/test-axios',
           name: 'test-axios',
           component: TestAxios // resolve => require(['@/components/test-axios-timeout'], resolve)
-        },
-        {
-          path: '/popover',
-          name: 'popover',
-          component: Popover
         }]
     }
   ]
