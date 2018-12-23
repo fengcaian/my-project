@@ -120,6 +120,10 @@ export default {
                 {
                   label: 'dialog',
                   route: 'dialog'
+                },
+                {
+                  label: 'tree',
+                  route: 'tree'
                 }
               ]
             }
