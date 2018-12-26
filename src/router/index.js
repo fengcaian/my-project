@@ -1,43 +1,30 @@
-// import * as vueEChartsRouter from 'vue-echarts-router'
+import { vueEChartsRouter } from './vue-echarts-router';
+import { svgRouter } from './svg-router';
+import { elementRouter } from './element-router';
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '@/view/home';
+import Home from '@/views/home';
 import HelloWorld from '@/components/HelloWorld';
-import SvgCharts from '@/components/SvgCharts';
 // import Dialog from '@/components/Dialog'
 // import Table from '@/components/table'
 // const Search2 = r => require.ensure([], () => r(require('@/components/Search2')), 'group-home1');
 const Search = r => require.ensure([], () => r(require('@/components/Search')), 'group-home1');
 const TestAxios = r => require.ensure([], () => r(require('@/components/test-axios-timeout')), 'group-home1');
-const Popover = r => require.ensure([], () => r(require('@/components/popover')), 'group-home1');
-const Table = r => require.ensure([], () => r(require('@/components/table')), 'group-home');
-const Dialog = r => require.ensure([], () => r(require('@/components/Dialog')), 'group-home');
-const EChartsBar = r => require.ensure([], () => r(require('@/view/vue-echarts/echarts-bar')), 'vue-echarts');
-const EChartsLine = r => require.ensure([], () => r(require('@/view/vue-echarts/echarts-line')), 'group-home');
 
 Vue.use(Router);
-
 export default new Router({
   routes: [
     {
       path: '/',
       name: 'home',
-      redirect: '/element-search',
+      // redirect: '/element-search',
       component: Home,
       children: [/* {
         path: '',
         component: Search2 // resolve => require(['@/components/Search2'], resolve)
       }, */
-        {
-          path: '/vue-echart-bar',
-          name: 'vue-echart-bar',
-          component: EChartsBar
-        },
-        {
-          path: '/vue-echart-line',
-          name: 'vue-echart-line',
-          component: EChartsLine
-        },
+        ...vueEChartsRouter,
+        ...elementRouter,
         {
           path: '/element-search',
           name: 'search',
@@ -47,21 +34,7 @@ export default new Router({
           component: resolve => require(['@/components/Search'], resolve)
         }] */
         },
-        {
-          path: '/svg-charts',
-          name: 'svg-charts',
-          component: SvgCharts
-        },
-        {
-          path: '/dialog',
-          name: 'dialog',
-          component: Dialog
-        },
-        {
-          path: '/table',
-          name: 'table',
-          component: Table
-        },
+        ...svgRouter,
         {
           path: '/hello_world',
           name: 'hello_world',
@@ -71,11 +44,6 @@ export default new Router({
           path: '/test-axios',
           name: 'test-axios',
           component: TestAxios // resolve => require(['@/components/test-axios-timeout'], resolve)
-        },
-        {
-          path: '/popover',
-          name: 'popover',
-          component: Popover
         }]
     }
   ]

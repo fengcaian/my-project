@@ -19,8 +19,11 @@ export default {
     Chart
   },
   data () {
-    return {
-      options: {
+    return {};
+  },
+  computed: {
+    options () { // 异步获取数据更新options
+      return {
         title: {
           text: '知识分类统计',
           textStyle: {
@@ -106,8 +109,8 @@ export default {
             }
           }
         ]
-      }
-    };
+      };
+    }
   },
   mounted () {
     this.resizeChart();

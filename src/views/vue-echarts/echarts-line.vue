@@ -21,8 +21,13 @@ export default {
   data () {
     const colors = ['#5793f3', '#d14a61', '#675bba'];
     return {
-      options: {
-        color: colors,
+      colors
+    };
+  },
+  computed: {
+    options () { // 异步获取数据更新options
+      return {
+        color: this.colors,
         tooltip: {
           trigger: 'none',
           axisPointer: {
@@ -57,7 +62,7 @@ export default {
             axisLine: {
               onZero: false,
               lineStyle: {
-                color: colors[1]
+                color: this.colors[1]
               }
             },
             axisPointer: {
@@ -77,7 +82,7 @@ export default {
             axisLine: {
               onZero: false,
               lineStyle: {
-                color: colors[0]
+                color: this.colors[0]
               }
             },
             axisPointer: {
@@ -114,8 +119,8 @@ export default {
             data: [3.9, 5.9, 11.1, 18.7, 48.3, 69.2, 231.6, 46.6, 55.4, 18.4, 10.3, 0.7]
           }
         ]
-      }
-    };
+      };
+    }
   },
   mounted () {
     this.resizeChart();
