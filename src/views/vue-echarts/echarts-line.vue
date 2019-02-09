@@ -58,6 +58,7 @@ export default {
             axisTick: {
               alignWithLabel: true
             },
+            boundaryGap: false, // 折线从0开始
             axisLine: {
               onZero: false,
               lineStyle: {
@@ -96,7 +97,11 @@ export default {
         ],
         yAxis: [
           {
-            type: 'value'
+            type: 'value',
+            minInterval: 1, // 纵坐标只能为整数
+            splitLine: { // 分割线
+              show: true
+            }
           }
         ],
         series: [
