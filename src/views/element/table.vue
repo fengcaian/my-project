@@ -105,14 +105,14 @@ export default {
     return {
       validateNumber,
       tableData6: [{
-        id: '12987122',
-        name: '王小虎',
+        id: '129871223',
+        name: '王小虎1',
         amount1: '234',
         amount2: '3.2',
         amount3: 10,
         value: ''
       }, {
-        id: '12987123',
+        id: '129871231',
         name: '王小虎',
         amount1: '165',
         amount2: '4.43',
@@ -137,7 +137,7 @@ export default {
         name: '王小虎',
         amount1: '539',
         amount2: '4.1',
-        amount3: 15,
+        amount3: 155,
         value: ''
       }],
       form: {
