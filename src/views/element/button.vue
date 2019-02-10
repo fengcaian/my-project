@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     sendRequest () {
-      this.axios.post('/getData.do')
+      this.axios.get('')
         .then((res) => {
           console.log(res);
         });

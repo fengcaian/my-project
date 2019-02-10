@@ -11,7 +11,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import SvgIcon from '../src/components/Svg-Icon';
 import './common/icons'; // 有了这个就不用再在使用scg-icon的文件中import svg资源了
-axios.defaults.baseURL = 'http://localhost:8080/SpringMVC';
+axios.defaults.baseURL = 'http://proserver:3000';
 Vue.prototype.axios = axios;
 // Vue.use(VueECharts)
 Vue.use(VueAxios, axios);

@@ -124,6 +124,10 @@ export default {
                 {
                   label: 'tree',
                   route: 'tree'
+                },
+                {
+                  label: 'button',
+                  route: 'button'
                 }
               ]
             }
