@@ -1,3 +1,4 @@
+import { authManagementRouter } from './auth-management';
 import { vueEChartsRouter } from './vue-echarts-router';
 import { svgRouter } from './svg-router';
 import { elementRouter } from './element-router';
@@ -23,6 +24,7 @@ export default new Router({
         path: '',
         component: Search2 // resolve => require(['@/components/Search2'], resolve)
       }, */
+        ...authManagementRouter,
         ...vueEChartsRouter,
         ...elementRouter,
         {

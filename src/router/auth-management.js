@@ -1,9 +1,9 @@
-const Func = r => require.ensure([], () => r(require('@/views/element/table')), 'element-router');
+const Func = r => require.ensure([], () => r(require('@/views/auth-management/func-list')), 'auth-router');
 
 const authManagementRouter = [
   {
-    path: '/func',
-    name: 'func',
+    path: '/func-list',
+    name: 'func-list',
     component: Func
   }
 ];

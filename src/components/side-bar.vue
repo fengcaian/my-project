@@ -67,6 +67,21 @@ export default {
       menuData: [
         {
           iconClass: 'el-icon-location',
+          label: '权限管理',
+          disabled: false,
+          menuGroup: [
+            {
+              children: [
+                {
+                  label: '功能管理',
+                  route: 'func-list'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          iconClass: 'el-icon-location',
           label: 'vue-echarts',
           disabled: false,
           menuGroup: [
