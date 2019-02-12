@@ -73,7 +73,7 @@ export default {
             {
               children: [
                 {
-                  label: '功能管理',
+                  label: '功能列表',
                   route: 'func-list'
                 }
               ]
