@@ -16,8 +16,8 @@
       </el-col>
       <el-col :span="18" :xl="19" class="textAlignL">
         <el-form ref="form" :inline="true" :model="form" label-width="80px">
-          <el-form-item label="功能名称">
-            <el-input class="inputWidth200" size="mini" v-model="form.funcName"></el-input>
+          <el-form-item label="标签">
+            <el-input class="inputWidth200" size="mini" v-model="form.keyWord"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" size="mini" @click="search">查找</el-button>
@@ -88,7 +88,7 @@ export default {
       treeNodeSelected: {},
       showAddFuncDialog: false,
       form: {
-        funcName: '',
+        keyWord: '',
         funcId: '',
         currentPage: 1,
         pageSize: 30
@@ -116,7 +116,7 @@ export default {
   methods: {
     search () {
       this.form.currentPage = 1;
-      this.search();
+      this.getList();
     },
     getList () {
       const params = {};

@@ -10,6 +10,9 @@
           <el-form-item label="功能名称" prop="funcName">
             <el-input class="inputWidth350" size="mini" v-model.trim="form.funcName"></el-input>
           </el-form-item>
+          <el-form-item label="功能key" prop="funcKey">
+            <el-input class="inputWidth350" size="mini" v-model.trim="form.funcKey"></el-input>
+          </el-form-item>
           <el-form-item label="功能描述" prop="funcDesc">
             <el-input class="inputWidth350" type="textarea" v-model.trim="form.funcDesc"></el-input>
           </el-form-item>
@@ -33,12 +36,16 @@ export default {
     return {
       form: {
         funcName: '',
+        funcKey: '',
         funcDesc: '',
         parentId: ''
       },
       rules: {
         funcName: [
           { required: true, message: '请输入名称！', trigger: 'blur' }
+        ],
+        funcKey: [
+          { required: true, message: '请输入key！', trigger: 'blur' }
         ]
       },
       loading: false
