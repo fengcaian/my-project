@@ -63,8 +63,8 @@
       :dialogShow="showAddFuncDialog"
       :parentNodeList="treeNodeSelectedParentList"
       :treeNodeSelected="treeNodeSelected"
-      @dialogAddFuncCb="dialogAddFuncCb"
-      ></dialog-add-func>
+      @dialogAddFuncCb="dialogAddFuncCb">
+    </dialog-add-func>
   </flex-grow-row>
 </template>
 
@@ -96,13 +96,24 @@ export default {
       totalRow: 0,
       funcList: [{funcId: 1}],
       tableDataList: [],
+      treeDataList: [],
       multipleSelection: [],
       treeNodeSelectedParentList: []
     };
   },
   computed: {
     funcTree () {
-      return [];
+      const temp = [];
+      function arrayToTree (parentId) {
+        this.treeDataList.forEach((item) => {
+          if (item.parentId === parentId) {
+            item.children = arrayToTree(item.id);
+            temp.push(item);
+          }
+        });
+        return temp;
+      }
+      return arrayToTree(1);
     }
   },
   watch: {
@@ -125,10 +136,16 @@ export default {
           params[key] = this.form[key];
         }
       });
-      this.axios.get(API.getFuncList, {
-        params: params
-      })
-        .then((res) => {});
+      Promise.all([
+        this.axios.get(API.getFuncList, {
+          params: params
+        }),
+        this.axios.get(API.getFuncTreeList)
+      ])
+        .then((res) => {
+          this.tableDataList = res[0];
+          this.treeDataList = res[1];
+        });
     },
     addFunc () {
       if (!this.treeNodeSelected.funcId) {

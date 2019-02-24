@@ -52,7 +52,11 @@ export default {
     };
   },
   created () {
-    this.form.parentId = this.treeNodeSelected.id;
+    if (this.treeNodeSelected) {
+      this.form.parentId = this.treeNodeSelected.id;
+    } else {
+      this.form.parentId = 1;
+    }
   },
   methods: {
     cancel () {
