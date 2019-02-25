@@ -19,6 +19,9 @@
           <el-form-item label="标签">
             <el-input class="inputWidth200" size="mini" v-model="form.keyWord"></el-input>
           </el-form-item>
+          <el-form-item label="功能名称">
+            <el-input class="inputWidth200" size="mini" v-model.trim="form.funcName"></el-input>
+          </el-form-item>
           <el-form-item>
             <el-button type="primary" size="mini" @click="search">查找</el-button>
           </el-form-item>
@@ -26,6 +29,8 @@
         <el-row class="button_list">
           <el-col :span="24">
             <el-button type="success" size="mini" @click="addFunc">新增</el-button>
+            <el-button type="primary" size="mini" @click="modifyFunc">修改</el-button>
+            <el-button type="danger" size="mini" :loading="deleteBtnLoading" @click="deleteFunc">删除</el-button>
           </el-col>
         </el-row>
         <el-table
@@ -65,18 +70,28 @@
       :treeNodeSelected="treeNodeSelected"
       @dialogAddFuncCb="dialogAddFuncCb">
     </dialog-add-func>
+    <dialog-modify-func
+      v-if="showModifyFuncDialog"
+      :dialogShow="showModifyFuncDialog"
+      :uuid="uuid"
+      @dialogModifyFuncCb="dialogModifyFuncCb">
+    </dialog-modify-func>
   </flex-grow-row>
 </template>
 
 <script>
+import _ from 'lodash';
+import { stringify } from 'qs';
 import * as API from '@/api';
 import flexGrowRow from '@/components/flex-grow-row.vue';
-import dialogAddFunc from './components/dialig-add-func';
+import dialogAddFunc from './components/dialog-add-func';
+import dialogModifyFunc from './components/dialog-modify-func';
 
 export default {
   components: {
     flexGrowRow,
-    dialogAddFunc
+    dialogAddFunc,
+    dialogModifyFunc
   },
   data () {
     return {
@@ -85,8 +100,11 @@ export default {
         children: 'children',
         label: 'label'
       },
+      deleteBtnLoading: false,
       treeNodeSelected: {},
       showAddFuncDialog: false,
+      showModifyFuncDialog: false,
+      uuid: '',
       form: {
         keyWord: '',
         funcId: '',
@@ -104,8 +122,9 @@ export default {
   computed: {
     funcTree () {
       const temp = [];
+      const funcList = _.cloneDeep(this.treeDataList);
       function arrayToTree (parentId) {
-        this.treeDataList.forEach((item) => {
+        funcList.forEach((item) => {
           if (item.parentId === parentId) {
             item.children = arrayToTree(item.id);
             temp.push(item);
@@ -113,7 +132,8 @@ export default {
         });
         return temp;
       }
-      return arrayToTree(1);
+      var tree = arrayToTree(1);
+      return tree;
     }
   },
   watch: {
@@ -143,8 +163,8 @@ export default {
         this.axios.get(API.getFuncTreeList)
       ])
         .then((res) => {
-          this.tableDataList = res[0];
-          this.treeDataList = res[1];
+          this.tableDataList = res[0] || [];
+          this.treeDataList = res[1] || [];
         });
     },
     addFunc () {
@@ -164,6 +184,49 @@ export default {
         this.search();
       }
       this.showAddFuncDialog = false;
+    },
+    modifyFunc () {
+      if (this.multipleSelection !== 1) {
+        this.$message({
+          message: '请选择一个！',
+          showClose: true,
+          type: 'warning'
+        });
+        return;
+      }
+      this.uuid = this.multipleSelection[0].uuid;
+      this.showModifyFuncDialog = true;
+    },
+    dialogModifyFuncCb (isRefresh) {
+      if (isRefresh) {
+        this.search();
+      }
+      this.showModifyFuncDialog = false;
+    },
+    deleteFunc () {
+      if (this.multipleSelection !== 1) {
+        this.$message({
+          message: '请选择一个！',
+          showClose: true,
+          type: 'warning'
+        });
+        return;
+      }
+      this.deleteBtnLoading = true;
+      this.axios
+        .post(API.deleteFunc, stringify({
+          uuid: this.multipleSelection[0].uuid
+        }))
+        .then(() => {
+          this.$message({
+            message: '删除成功！',
+            showClose: true,
+            type: 'success'
+          });
+        })
+        .finally(() => {
+          this.deleteBtnLoading = false;
+        });
     },
     filterNode (value, data) {
       if (!value) return true;
