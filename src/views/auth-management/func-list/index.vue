@@ -42,15 +42,9 @@
           style="width: 100%"
           @selection-change="handleSelectionChange">
           <el-table-column type="selection" width="55" align="center"></el-table-column>
-          <el-table-column label="功能名称" align="center">
-            <template slot-scope="scope">{{ scope.row.funcName }}</template>
-          </el-table-column>
-          <el-table-column label="功能key" align="center">
-            <template slot-scope="scope">{{ scope.row.funcKey }}</template>
-          </el-table-column>
-          <el-table-column label="功能描述" align="center">
-            <template slot-scope="scope">{{ scope.row.funcDesc }}</template>
-          </el-table-column>
+          <el-table-column prop="funcName" label="功能名称" align="center"></el-table-column>
+          <el-table-column prop="funcKey" label="功能key" align="center"></el-table-column>
+          <el-table-column prop="funcDesc" label="功能描述" align="center"></el-table-column>
         </el-table>
         <div class="page-center">
           <el-pagination
@@ -60,7 +54,7 @@
             layout="prev, pager, next, jumper"
             :total="totalRow">
           </el-pagination>
-        </div>
+        </div>{{totalRow}}
       </el-col>
     </el-row>
     <dialog-add-func
@@ -163,8 +157,9 @@ export default {
         this.axios.get(API.getFuncTreeList)
       ])
         .then((res) => {
-          this.tableDataList = res[0] || [];
-          this.treeDataList = res[1] || [];
+          this.tableDataList = res[0].data.result.dataList || [];
+          this.totalRow = res[0].data.result.totalRow;
+          this.treeDataList = res[1].data.result || [];
         });
     },
     addFunc () {
@@ -204,7 +199,7 @@ export default {
       this.showModifyFuncDialog = false;
     },
     deleteFunc () {
-      if (this.multipleSelection !== 1) {
+      if (this.multipleSelection.length !== 1) {
         this.$message({
           message: '请选择一个！',
           showClose: true,
@@ -214,8 +209,8 @@ export default {
       }
       this.deleteBtnLoading = true;
       this.axios
-        .post(API.deleteFunc, stringify({
-          uuid: this.multipleSelection[0].uuid
+        .post(API.deleteFuncByUuid, stringify({
+          uuid: this.multipleSelection[0]._id
         }))
         .then(() => {
           this.$message({
