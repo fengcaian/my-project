@@ -28,11 +28,11 @@ import { stringify } from 'qs';
 import * as API from '@/api';
 
 export default {
-  props: ['dialogShow', 'uuid'],
+  props: ['dialogShow', '_id'],
   data () {
     return {
       form: {
-        uuid: '',
+        _id: '',
         funcName: '',
         funcDesc: '',
         parentId: ''
@@ -53,7 +53,7 @@ export default {
       this.axios
         .get(API.modifyFuncInit, {
           params: {
-            uuid: this.uuid
+            _id: this._id
           }
         })
         .then((res) => {

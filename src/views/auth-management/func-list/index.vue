@@ -67,7 +67,7 @@
     <dialog-modify-func
       v-if="showModifyFuncDialog"
       :dialogShow="showModifyFuncDialog"
-      :uuid="uuid"
+      :_id="_id"
       @dialogModifyFuncCb="dialogModifyFuncCb">
     </dialog-modify-func>
   </flex-grow-row>
@@ -98,7 +98,7 @@ export default {
       treeNodeSelected: {},
       showAddFuncDialog: false,
       showModifyFuncDialog: false,
-      uuid: '',
+      _id: '',
       form: {
         keyWord: '',
         funcId: '',
@@ -189,7 +189,7 @@ export default {
         });
         return;
       }
-      this.uuid = this.multipleSelection[0].uuid;
+      this._id = this.multipleSelection[0]._id;
       this.showModifyFuncDialog = true;
     },
     dialogModifyFuncCb (isRefresh) {
@@ -209,8 +209,8 @@ export default {
       }
       this.deleteBtnLoading = true;
       this.axios
-        .post(API.deleteFuncByUuid, stringify({
-          uuid: this.multipleSelection[0]._id
+        .post(API.deleteFunc, stringify({
+          _id: this.multipleSelection[0]._id
         }))
         .then(() => {
           this.$message({
