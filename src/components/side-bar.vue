@@ -147,6 +147,21 @@ export default {
               ]
             }
           ]
+        },
+        {
+          iconClass: 'other-knowledage',
+          label: 'other',
+          disabled: false,
+          menuGroup: [
+            {
+              children: [
+                {
+                  label: '大数精确计算',
+                  route: 'big-number'
+                }
+              ]
+            }
+          ]
         }
       ]
     };

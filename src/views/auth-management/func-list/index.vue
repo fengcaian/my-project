@@ -75,6 +75,7 @@
 
 <script>
 import _ from 'lodash';
+import BigNumber from 'bignumber.js';
 import { stringify } from 'qs';
 import * as API from '@/api';
 import flexGrowRow from '@/components/flex-grow-row.vue';
@@ -237,7 +238,7 @@ export default {
     },
     handleCurrentChange (val) {
       this.form.currentPage = val;
-    }
+    },
   }
 };
 </script>

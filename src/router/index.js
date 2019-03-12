@@ -2,6 +2,7 @@ import { authManagementRouter } from './auth-management';
 import { vueEChartsRouter } from './vue-echarts-router';
 import { svgRouter } from './svg-router';
 import { elementRouter } from './element-router';
+import { otherKnowledageRouter } from './other-knowledage';
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/views/home';
@@ -27,6 +28,7 @@ export default new Router({
         ...authManagementRouter,
         ...vueEChartsRouter,
         ...elementRouter,
+        ...otherKnowledageRouter,
         {
           path: '/element-search',
           name: 'search',
