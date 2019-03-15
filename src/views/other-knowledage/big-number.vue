@@ -32,11 +32,13 @@
       更多用法查看：
       <a class="link" target="_blank" href="https://juejin.im/post/5be00d15e51d451bc70bfa26">bignumber.js用法-掘金</a>
     </div>
+	<div style="margin-top: 50px" v-html="result"></div>
   </div>
 </template>
 
 <script>
 import BigNumber from 'bignumber.js';
+import hljs from 'highlight.js';
 export default {
   data () {
     return {
@@ -53,8 +55,15 @@ export default {
         param7: null,
         param8: null,
         quotient: null
-      }
-    };
+      },
+      json: 'select aa from table where a = 1',
+	  result: ''
+	};
+  },
+  created () {
+	console.log(hljs);
+	const lang = hljs.highlightAuto(this.json);
+	this.result = hljs.highlight(lang.language, this.json).value;
   },
   methods: {
     calculate (type) {
