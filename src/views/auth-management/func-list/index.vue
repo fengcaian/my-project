@@ -49,12 +49,12 @@
         <div class="page-center">
           <el-pagination
             @current-change="handleCurrentChange"
-            :current-page.sync="form.currentPage"
+            :current-page="form.currentPage"
             :page-size="form.pageSize"
-            layout="prev, pager, next, jumper"
+            layout="total, prev, pager, next, jumper"
             :total="totalRow">
           </el-pagination>
-        </div>{{totalRow}}
+        </div>
       </el-col>
     </el-row>
     <dialog-add-func
@@ -75,7 +75,6 @@
 
 <script>
 import _ from 'lodash';
-import BigNumber from 'bignumber.js';
 import { stringify } from 'qs';
 import * as API from '@/api';
 import flexGrowRow from '@/components/flex-grow-row.vue';
