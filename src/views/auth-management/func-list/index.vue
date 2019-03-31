@@ -13,6 +13,7 @@
           :filter-node-method="filterNode"
           @node-click="treeNodeClick">
         </el-tree>
+        <span>{{funcTree}}</span>
       </el-col>
       <el-col :span="18" :xl="19" class="textAlignL">
         <el-form ref="form" :inline="true" :model="form" label-width="80px">
@@ -106,7 +107,7 @@ export default {
         pageSize: 30
       },
       totalRow: 0,
-      funcList: [{funcId: 1}],
+      funcList: [{id: 1}],
       tableDataList: [],
       treeDataList: [],
       multipleSelection: [],
@@ -118,16 +119,16 @@ export default {
       const temp = [];
       const funcList = _.cloneDeep(this.treeDataList);
       function arrayToTree (parentId) {
-        funcList.forEach((item) => {
+        console.log(funcList);
+        /* funcList.forEach((item) => {
           if (item.parentId === parentId) {
             item.children = arrayToTree(item.id);
             temp.push(item);
           }
-        });
+        }); */
         return temp;
       }
-      var tree = arrayToTree(1);
-      return tree;
+      return arrayToTree(1);
     }
   },
   watch: {
@@ -163,14 +164,14 @@ export default {
         });
     },
     addFunc () {
-      if (!this.treeNodeSelected.funcId) {
+      if (!this.treeNodeSelected.id) {
         this.treeNodeSelected = this.funcList[0];
       }
       let node = this.treeNodeSelected;
       this.treeNodeSelectedParentList = [];
-      while (node.funcId) {
+      while (node.id) {
         this.treeNodeSelectedParentList.push(node.funcName);
-        node = this.funcList.find(func => func.funcId === node.parentId) || {};
+        node = this.funcList.find(func => func.id === node.parentId) || {};
       }
       this.showAddFuncDialog = true;
     },
@@ -210,7 +211,7 @@ export default {
       this.deleteBtnLoading = true;
       this.axios
         .post(API.deleteFunc, stringify({
-          _id: this.multipleSelection[0]._id
+          id: this.multipleSelection[0].id
         }))
         .then(() => {
           this.$message({
@@ -218,6 +219,7 @@ export default {
             showClose: true,
             type: 'success'
           });
+          this.getList();
         })
         .finally(() => {
           this.deleteBtnLoading = false;
@@ -229,7 +231,7 @@ export default {
     },
     treeNodeClick (treeNode) {
       this.treeNodeSelected = treeNode;
-      this.form.funcId = treeNode.funcId;
+      this.form.id = treeNode.id;
       this.search();
     },
     handleSelectionChange (val) {
@@ -237,7 +239,7 @@ export default {
     },
     handleCurrentChange (val) {
       this.form.currentPage = val;
-    },
+    }
   }
 };
 </script>

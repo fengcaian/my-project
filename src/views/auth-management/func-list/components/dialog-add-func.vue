@@ -35,8 +35,8 @@ export default {
   data () {
     return {
       form: {
-        funcName: '',
-        funcKey: '',
+        funcName: '1212',
+        funcKey: 'add',
         funcDesc: '',
         parentId: ''
       },
@@ -65,6 +65,7 @@ export default {
     save () {
       this.$refs.form.validate((valid) => {
         if (valid) {
+          console.log(typeof this.form.parentId);
           this.axios.post(API.saveFunc, stringify(this.form))
             .then(() => {
               this.$message({
