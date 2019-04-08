@@ -55,7 +55,7 @@ export default {
     if (this.treeNodeSelected) {
       this.form.parentId = this.treeNodeSelected.id;
     } else {
-      this.form.parentId = 1;
+      this.form.parentId = 0;
     }
   },
   methods: {

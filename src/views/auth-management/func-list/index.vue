@@ -6,14 +6,12 @@
         <el-input class="inputWidth150" placeholder="输入关键字进行过滤" size="mini" v-model="treeFilterKeyword"></el-input>
         <el-tree
           ref="tree"
-          class="filter-tree"
           :data="funcTree"
+          node-key="id"
           :props="defaultProps"
-          default-expand-all
-          :filter-node-method="filterNode"
+          :default-expand-all="true"
           @node-click="treeNodeClick">
         </el-tree>
-        <span>{{funcTree}}</span>
       </el-col>
       <el-col :span="18" :xl="19" class="textAlignL">
         <el-form ref="form" :inline="true" :model="form" label-width="80px">
@@ -36,6 +34,7 @@
         </el-row>
         <el-table
           border
+          stripe
           ref="multipleTable"
           :data="tableDataList"
           header-row-class-name="table-header"
@@ -68,7 +67,7 @@
     <dialog-modify-func
       v-if="showModifyFuncDialog"
       :dialogShow="showModifyFuncDialog"
-      :_id="_id"
+      :id="id"
       @dialogModifyFuncCb="dialogModifyFuncCb">
     </dialog-modify-func>
   </flex-grow-row>
@@ -90,16 +89,18 @@ export default {
   },
   data () {
     return {
+      checkedNodes: [],
+      defaultCheckedKeys: [1],
       treeFilterKeyword: '',
       defaultProps: {
         children: 'children',
-        label: 'label'
+        label: 'funcName'
       },
       deleteBtnLoading: false,
       treeNodeSelected: {},
       showAddFuncDialog: false,
       showModifyFuncDialog: false,
-      _id: '',
+      id: '',
       form: {
         keyWord: '',
         funcId: '',
@@ -107,7 +108,7 @@ export default {
         pageSize: 30
       },
       totalRow: 0,
-      funcList: [{id: 1}],
+      funcList: [{id: 0}],
       tableDataList: [],
       treeDataList: [],
       multipleSelection: [],
@@ -116,19 +117,20 @@ export default {
   },
   computed: {
     funcTree () {
-      const temp = [];
       const funcList = _.cloneDeep(this.treeDataList);
       function arrayToTree (parentId) {
-        console.log(funcList);
-        /* funcList.forEach((item) => {
+        const temp = [];
+        funcList.forEach((item) => {
           if (item.parentId === parentId) {
             item.children = arrayToTree(item.id);
             temp.push(item);
           }
-        }); */
+        });
         return temp;
       }
-      return arrayToTree(1);
+      const result = arrayToTree(0);
+      console.log(result);
+      return result;
     }
   },
   watch: {
@@ -190,7 +192,7 @@ export default {
         });
         return;
       }
-      this._id = this.multipleSelection[0]._id;
+      this.id = this.multipleSelection[0].id;
       this.showModifyFuncDialog = true;
     },
     dialogModifyFuncCb (isRefresh) {
