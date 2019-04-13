@@ -1,11 +1,9 @@
+import * as API from '@/api';
+import Vue from 'vue';
 export default {
   getConst ({state, commit}) {
     console.log(state.count);
     const name = ['user1', 'user2'];
-    const name2 = {
-      code: 'mbv',
-      url: 'www.baidu.com'
-    };
     const user = {
       name: 'userInfo',
       userInfoDetail: {
@@ -15,8 +13,18 @@ export default {
     };
     console.log(...name);
     commit('setConst', {
-      ...name2,
+      name: 'user',
       result: user.userInfoDetail
     });
+  },
+  getAuthInfo ({ state, commit }) {
+    new Vue().axios.get(API.getFuncTreeList)
+      .then(({ data: { result } }) => {
+        console.log(result);
+        commit('setAuthInfo', {
+          name: 'authList',
+          result
+        });
+      });
   }
 };

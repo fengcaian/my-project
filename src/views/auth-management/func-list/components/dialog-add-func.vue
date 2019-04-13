@@ -35,8 +35,8 @@ export default {
   data () {
     return {
       form: {
-        funcName: '1212',
-        funcKey: 'add',
+        funcName: '',
+        funcKey: '',
         funcDesc: '',
         parentId: ''
       },

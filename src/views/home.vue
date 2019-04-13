@@ -40,6 +40,7 @@ export default {
   },
   created () {
     this.$store.dispatch('getConst');
+    this.$store.dispatch('getAuthInfo');
     console.log(this.$store.state);
     this.activeTab = 'element-search';
     // this.$router.push('/element-search');

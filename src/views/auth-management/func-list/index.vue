@@ -40,6 +40,7 @@
           header-row-class-name="table-header"
           tooltip-effect="dark"
           style="width: 100%"
+          :max-height="450"
           @selection-change="handleSelectionChange">
           <el-table-column type="selection" width="55" align="center"></el-table-column>
           <el-table-column prop="funcName" label="功能名称" align="center"></el-table-column>
@@ -181,6 +182,7 @@ export default {
       if (isRefresh) {
         this.search();
       }
+      this.treeNodeSelected = {};
       this.showAddFuncDialog = false;
     },
     modifyFunc () {
