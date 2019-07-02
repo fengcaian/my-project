@@ -186,7 +186,7 @@ export default {
       this.showAddFuncDialog = false;
     },
     modifyFunc () {
-      if (this.multipleSelection !== 1) {
+      if (this.multipleSelection.length !== 1) {
         this.$message({
           message: '请选择一个！',
           showClose: true,

@@ -57,7 +57,8 @@ export default {
           }
         })
         .then((res) => {
-          this.form = res.result;
+          this.form = res.data.result;
+          console.log(res);
         });
     },
     cancel () {
