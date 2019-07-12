@@ -1,4 +1,5 @@
 import * as API from '@/api';
+import localRouterInfo from '@/router';
 import Vue from 'vue';
 export default {
   getConst ({state, commit}) {
@@ -21,6 +22,7 @@ export default {
     new Vue().axios.get(API.getFuncTreeList)
       .then(({ data: { result } }) => {
         console.log(result);
+        console.log(localRouterInfo);
         commit('setAuthInfo', {
           name: 'authList',
           result

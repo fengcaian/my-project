@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import flexGrowRow from '../components/flex-grow-row';
 import sideBar from '@/components/side-bar';
 export default {
@@ -37,6 +39,11 @@ export default {
       activeTab: '',
       tabData: []
     };
+  },
+  computed: {
+    ...mapState({
+      tabDatassss: state => state.topTabList
+    }),
   },
   created () {
     this.$store.dispatch('getConst');
