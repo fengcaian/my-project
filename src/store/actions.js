@@ -13,7 +13,7 @@ export default {
       }
     };
     console.log(...name);
-    commit('setConst', {
+    commit('SET_CONST', {
       name: 'user',
       result: user.userInfoDetail
     });
@@ -23,7 +23,7 @@ export default {
       .then(({ data: { result } }) => {
         console.log(result);
         console.log(localRouterInfo);
-        commit('setAuthInfo', {
+        commit('SET_AUTH_INFO', {
           name: 'authList',
           result
         });

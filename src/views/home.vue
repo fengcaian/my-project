@@ -43,7 +43,7 @@ export default {
   computed: {
     ...mapState({
       tabDatassss: state => state.topTabList
-    }),
+    })
   },
   created () {
     this.$store.dispatch('getConst');

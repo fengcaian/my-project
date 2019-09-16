@@ -1,10 +1,8 @@
-import Vue from 'Vue';
-
 export default {
-  setConst (state, args) {
-    Vue.set(state, args.name, args.result);
+  SET_CONST (state, args) {
+    state[args.name] = args.result;
   },
-  setAuthInfo (state, args) {
-    Vue.set(state, args.name, args.result);
+  SET_AUTH_INFO (state, args) {
+    state[args.name] = args.result;
   }
 };

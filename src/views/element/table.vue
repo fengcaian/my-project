@@ -1,42 +1,9 @@
 <template>
   <div style="max-width: 1435px; overflow: auto">
-   <!-- <el-button type="primary" icon="el-icon-setting" size="mini" @click="showConfig">表格列</el-button>
-    <el-table :data="tableData6" :span-method="arraySpanMethod" border style="width: 100%">
-      <el-table-column prop="id" label="ID" width="180"></el-table-column>
-      <el-table-column prop="name" label="姓名"></el-table-column>
-      <el-table-column style="width: auto" sortable label="数值 1" show-overflow-tooltip>
-        <template slot-scope="scope">
-          <span class="text-overflow">{{scope.row.amount1}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column prop="amount2" sortable label="数值 2" show-overflow-tooltip>
-        <template slot-scope="scope">
-          <span class="text-overflow">{{scope.row.amount2}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column prop="amount3" sortable label="数值 3" show-overflow-tooltip>
-        <template slot-scope="scope">
-          <span class="text-overflow">{{scope.row.amount3}}</span>
-        </template>
-      </el-table-column>
-    </el-table>
-
-    <el-table :data="tableData6" :span-method="objectSpanMethod" border style="width: 100%; margin-top: 20px;table-layout: fixed">
-      <el-table-column prop="id" label="ID" width="180">
-      </el-table-column>
-      <el-table-column prop="name" label="姓名">
-      </el-table-column>
-      <el-table-column prop="amount1" label="数值 1（元）">
-      </el-table-column>
-      <el-table-column prop="amount2" label="数值 2（元）">
-      </el-table-column>
-      <el-table-column prop="amount3" label="数值 3（元）">
-      </el-table-column>
-    </el-table>-->
     <el-button type="primary" size="small" @click="formValid">form表单校验</el-button>
     <el-row :gutter="20">
       <el-form ref="form" :model="form">
-        <el-table :data="form.tableData6">
+        <!--<el-table :data="form.tableData6">
           <el-table-column prop="id" label="ID" width="180">
             <template slot-scope="scope">
               <el-form-item :prop="'tableData6.'+scope.$index+'.id'" :rules="[
@@ -76,7 +43,7 @@
           </el-table-column>
           <el-table-column prop="amount2" label="数值 2（元）"></el-table-column>
           <el-table-column prop="amount3" label="数值 3（元）"></el-table-column>
-        </el-table>
+        </el-table>-->
         <el-form-item prop="address" label="地址" label-width="80px" :rules="[
                 { required: true, message: '请输入破损数量', trigger: 'blur' },
                 { pattern: /^\d+(.\d+)?$/, message: '只能输入整数或小数', trigger: 'blur' },
@@ -86,11 +53,17 @@
         </el-form-item>
       </el-form>
     </el-row>
+    <el-table :data="tableData6">
+      <el-table-column prop="id" label="ID"></el-table-column>
+      <el-table-column prop="name" label="名称"></el-table-column>
+      <el-table-column prop="amount1" label="仓库"></el-table-column>
+      <el-table-column prop="amount2" label="数值 2（元）"></el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
-
+import Sortable from 'sortablejs';
 export default {
   data () {
     const validateNumber = (rule, value, callback) => {
@@ -104,42 +77,114 @@ export default {
     };
     return {
       validateNumber,
-      tableData6: [{
-        id: '129871223',
-        name: '王小虎1',
-        amount1: '234',
-        amount2: '3.2',
-        amount3: 10,
-        value: ''
-      }, {
-        id: '129871231',
-        name: '王小虎',
-        amount1: '165',
-        amount2: '4.43',
-        amount3: 12,
-        value: ''
-      }, {
-        id: '1298712412987124129871241298712412987124',
-        name: '王小虎王小虎王小虎王小虎王小虎',
-        amount1: '3',
-        amount2: '1.91.91.91.91.91.91',
-        amount3: '23',
-        value: ''
-      }, {
-        id: '12987125',
-        name: '王小虎',
-        amount1: '621',
-        amount2: '2.2',
-        amount3: 17,
-        value: ''
-      }, {
-        id: '12987126',
-        name: '王小虎',
-        amount1: '539',
-        amount2: '4.1',
-        amount3: 155,
-        value: ''
-      }],
+      tableData6: [
+        {
+          id: '129871223',
+          name: '王小虎1',
+          amount1: '234',
+          amount2: '3.2',
+          amount3: 10,
+          value: ''
+        }, {
+          id: '129871231',
+          name: '王小虎',
+          amount1: '165',
+          amount2: '4.43',
+          amount3: 12,
+          value: ''
+        }, {
+          id: '1298712412987124129871241298712412987124',
+          name: '王小虎王小虎王小虎王小虎王小虎',
+          amount1: '3',
+          amount2: '1.91.91.91.91.91.91',
+          amount3: '23',
+          value: ''
+        }, {
+          id: '12987125',
+          name: '王小虎',
+          amount1: '621',
+          amount2: '2.2',
+          amount3: 17,
+          value: ''
+        }, {
+          id: '12987126',
+          name: '王小虎',
+          amount1: '539',
+          amount2: '4.1',
+          amount3: 155,
+          value: ''
+        }, {
+          id: '12987126',
+          name: '王小虎',
+          amount1: '539',
+          amount2: '4.1',
+          amount3: 155,
+          value: ''
+        }, {
+          id: '12987126',
+          name: '王小虎',
+          amount1: '539',
+          amount2: '4.1',
+          amount3: 155,
+          value: ''
+        }, {
+          id: '12987126',
+          name: '王小虎',
+          amount1: '539',
+          amount2: '4.1',
+          amount3: 155,
+          value: ''
+        }, {
+          id: '12987126',
+          name: '王小虎',
+          amount1: '539',
+          amount2: '4.1',
+          amount3: 155,
+          value: ''
+        }, {
+          id: '12987126',
+          name: '王小虎',
+          amount1: '539',
+          amount2: '4.1',
+          amount3: 155,
+          value: ''
+        }, {
+          id: '12987126',
+          name: '王小虎',
+          amount1: '539',
+          amount2: '4.1',
+          amount3: 155,
+          value: ''
+        }, {
+          id: '12987126',
+          name: '王小虎',
+          amount1: '539',
+          amount2: '4.1',
+          amount3: 155,
+          value: ''
+        }, {
+          id: '12987126',
+          name: '王小虎',
+          amount1: '539',
+          amount2: '4.1',
+          amount3: 155,
+          value: ''
+        }, {
+          id: '12987126',
+          name: '王小虎',
+          amount1: '539',
+          amount2: '4.1',
+          amount3: 155,
+          value: ''
+        }, {
+          id: '12987126',
+          name: '王小虎',
+          amount1: '539',
+          amount2: '4.1',
+          amount3: 155,
+          value: ''
+        }
+      ],
       form: {
         tableData6: [],
         address: ''
@@ -167,6 +212,16 @@ export default {
       console.log(this);
     }, 1000);
     this.form.tableData6 = this.tableData6;
+  },
+  mounted () {
+    const table = document.querySelector('.el-table__body-wrapper tbody');
+    const self = this;
+    Sortable.create(table, {
+      onEnd ({ newIndex, oldIndex }) {
+        const targetRow = self.tableData.splice(oldIndex, 1)[0];
+        self.tableData.splice(newIndex, 0, targetRow);
+      }
+    });
   },
   methods: {
     arraySpanMethod ({ row, column, rowIndex, columnIndex }) {
